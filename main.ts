@@ -6,7 +6,7 @@ import "https://deno.land/x/dotenv/load.ts";
 // Configuración de MongoDB
 const MONGO_URL = Deno.env.get("MONGO_URL");
 if (!MONGO_URL) {
-  console.error("El link de MongoDB no está definido en las variables de entorno.");
+  console.error("El link de MongoDB no funciona");
   Deno.exit(1);
 }
 
@@ -17,7 +17,7 @@ console.log("Conectado a MongoDB");
 const db = client.db("aerolinea");
 const vuelosCollection = db.collection("vuelos");
 
-// Definición del esquema GraphQL
+// Definición del esquema
 const typeDefs = `#graphql
   type Vuelo {
     id: ID!
@@ -36,7 +36,7 @@ const typeDefs = `#graphql
   }
 `;
 
-// Resolvers de la API GraphQL
+// Resolvers
 const resolvers = {
   Query: {
     getFlights: async (_: unknown, args: { origen?: string; destino?: string }) => {
